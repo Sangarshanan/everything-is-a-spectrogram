@@ -1,10 +1,7 @@
 fastapi
 uvicorn
-python-multipart
 jinja2
 numpy
 scipy
 Pillow
-pytest
 matplotlib
-httpx
