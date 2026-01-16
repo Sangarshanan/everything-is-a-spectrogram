@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 import io
 import wave
 import math
@@ -51,6 +51,8 @@ class SpectroGraphic:
     def _preprocess_image(self):
         # Resize and convert to grayscale
         img = self.image.resize((self.WIDTH, self.HEIGHT), Image.Resampling.LANCZOS)
+        # Apply Gaussian Blur to smooth out harsh transitions
+        img = img.filter(ImageFilter.GaussianBlur(radius=1))
         img = img.convert('L')
         # Flip vertically because low frequencies (bottom) correspond to higher indices in image usually
         # But in spectrograms, low freq is bottom. Let's align with standard:
@@ -64,7 +66,8 @@ class SpectroGraphic:
     def _generate_frequencies(self):
         # Map Y-axis rows to frequencies
         # Row 0 = Max Freq, Row H = Min Freq
-        freqs = np.linspace(self.MAX_FREQ, self.MIN_FREQ, self.HEIGHT)
+        # Use geometric progression (logarithmic scale) for musicality
+        freqs = np.geomspace(self.MAX_FREQ, self.MIN_FREQ, self.HEIGHT)
         
         if self.QUANTIZE:
             # Vectorized quantization: find nearest scale freq for each freq
