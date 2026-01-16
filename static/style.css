@@ -1,0 +1,221 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.viewport {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 20px auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px;
+    /* Fixed height for empty state */
+}
+
+video {
+    width: 100%;
+    display: none;
+    /* Ensure hidden */
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scaleX(-1);
+    /* Mirror effect for consistency */
+}
+
+#placeholder {
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+#playhead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: red;
+    display: none;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.viewport:hover #overlay {
+    opacity: 1;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.control-group.checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #aaa;
+}
+
+input[type="range"],
+input[type="number"],
+select {
+    width: 100%;
+    background: #333;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+    height: 20px;
+}
+
+/* Info Button */
+.icon-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 100;
+}
+
+.icon-btn:hover {
+    color: #fff;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #333;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal h2 {
+    margin-top: 0;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.modal h3 {
+    margin-top: 20px;
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+.modal ul {
+    padding-left: 20px;
+    color: #aaa;
+}
+
+.modal li {
+    margin-bottom: 5px;
+}
+
+.modal p {
+    color: #ccc;
+    line-height: 1.6;
+}

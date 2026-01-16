@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everything is a Spectrogram</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', path='favicon.png') }}" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+        <button id="info-btn" class="icon-btn" aria-label="Info">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+        </button>
+        <h1>everything is a spectrogram</h1>
+        <p>Press <strong>SPACE</strong> to capture and listen</p>
+
+        <div class="viewport">
+            <!-- Video is hidden but active for capture -->
+            <video id="webcam" autoplay playsinline style="display:none;"></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+            <div id="placeholder"></div>
+            <div id="playhead"></div>
+            <div id="overlay">Press SPACE</div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group checkbox"
+                style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px;">
+                <label style="color: #0ff; font-weight: bold;">
+                    <input type="checkbox" id="continuous_mode"> Continuous Mode
+                </label>
+            </div>
+
+            <div class="control-group">
+                <label>Duration (s): <span id="dur-val">10</span></label>
+                <input type="range" id="duration" min="1" max="30" value="10">
+            </div>
+
+            <div class="control-group">
+                <label>Min Freq (Hz)</label>
+                <input type="number" id="min_freq" value="500">
+            </div>
+
+            <div class="control-group">
+                <label>Max Freq (Hz)</label>
+                <input type="number" id="max_freq" value="5000">
+            </div>
+
+            <div class="control-group">
+                <label>Contrast: <span id="con-val">5</span></label>
+                <input type="range" id="contrast" min="1" max="10" step="0.1" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>Waveform</label>
+                <select id="waveform">
+                    <option value="sine">Sine</option>
+                    <option value="square">Square</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="sawtooth">Sawtooth</option>
+                </select>
+            </div>
+
+            <div class="control-group checkbox">
+                <label>
+                    <input type="checkbox" id="quantize" checked> Musical Quantization
+                </label>
+            </div>
+
+            <div class="control-group checkbox">
+                <label>
+                    <input type="checkbox" id="stereo_envelope" checked> Stereo Envelope
+                </label>
+            </div>
+        </div>
+
+        <div id="status">Ready</div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Everything is a Spectrogram</h2>
+            <p>An experimental performance tool that converts images captured from your webcam into sound by
+                interpreting them as frequency spectrograms.</p>
+
+            <h3>Modes</h3>
+            <ul>
+                <li><strong>Standard Mode:</strong> Press SPACE to capture a single image and play its sound.</li>
+                <li><strong>Continuous Mode:</strong> Automatically captures and plays in a loop.</li>
+            </ul>
+
+            <h3>Parameters</h3>
+            <ul>
+                <li><strong>Duration:</strong> Length of the generated audio.</li>
+                <li><strong>Min/Max Freq:</strong> Frequency range mapped to the image height.</li>
+                <li><strong>Contrast:</strong> Enhances image features for clearer sound.</li>
+                <li><strong>Waveform:</strong> Timbre of the sound (Sine, Square, Triangle, Sawtooth).</li>
+                <li><strong>Musical Quantization:</strong> Snaps frequencies to the nearest musical note.</li>
+                <li><strong>Stereo Envelope:</strong> Adds stereo width and amplitude shaping.</li>
+            </ul>
+
+            <p>
+                <a href="https://github.com/Sangarshanan/everything-is-a-spectrogram" target="_blank"
+                    style="color: #0ff;">View on GitHub</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='main.js') }}"></script>
+</body>
+
+</html>
