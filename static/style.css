@@ -1,3 +1,20 @@
+/* Capture button style */
+.capture-btn {
+    background: #0ff;
+    color: #111;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s;
+    outline: none;
+}
+.capture-btn:active {
+    background: #0cc;
+}
 body {
     background-color: #121212;
     color: #e0e0e0;

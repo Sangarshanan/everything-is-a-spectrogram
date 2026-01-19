@@ -149,6 +149,12 @@ document.addEventListener('keydown', async (e) => {
     }
 });
 
+// Add capture button click handler
+const captureBtn = document.getElementById('capture-btn');
+if (captureBtn) {
+    captureBtn.addEventListener('click', captureAndProcess);
+}
+
 // Modal Logic
 const modal = document.getElementById("info-modal");
 const btn = document.getElementById("info-btn");

@@ -20,7 +20,7 @@
             </svg>
         </button>
         <h1>everything is a spectrogram</h1>
-        <p>Press <strong>SPACE</strong> to capture and listen</p>
+        <p>Press <strong>SPACE</strong> or <strong>Tap on the button</strong> to capture and listen</p>
 
         <div class="viewport">
             <!-- Video is hidden but active for capture -->
@@ -28,7 +28,8 @@
             <canvas id="canvas" style="display:none;"></canvas>
             <div id="placeholder"></div>
             <div id="playhead"></div>
-            <div id="overlay">Press SPACE</div>
+            <div id="overlay">Press SPACE or tap the button</div>
+            <button id="capture-btn" aria-label="Capture" style="position:absolute;bottom:20px;right:20px;z-index:10;" class="capture-btn">🎤</button>
         </div>
 
         <div class="controls">
@@ -46,12 +47,12 @@
 
             <div class="control-group">
                 <label>Min Freq (Hz)</label>
-                <input type="number" id="min_freq" value="500">
+                <input type="number" id="min_freq" value="100">
             </div>
 
             <div class="control-group">
                 <label>Max Freq (Hz)</label>
-                <input type="number" id="max_freq" value="5000">
+                <input type="number" id="max_freq" value="1500">
             </div>
 
             <div class="control-group">
@@ -95,7 +96,7 @@
 
             <h3>Modes</h3>
             <ul>
-                <li><strong>Standard Mode:</strong> Press SPACE to capture a single image and play its sound.</li>
+                <li><strong>Standard Mode:</strong> Press SPACE or Tap on the button to capture a single image and play its sound.</li>
                 <li><strong>Continuous Mode:</strong> Automatically captures and plays in a loop.</li>
             </ul>
 
@@ -103,10 +104,8 @@
             <ul>
                 <li><strong>Duration:</strong> Length of the generated audio.</li>
                 <li><strong>Min/Max Freq:</strong> Frequency range mapped to the image height.</li>
-                <li><strong>Contrast:</strong> Enhances image features for clearer sound.</li>
                 <li><strong>Waveform:</strong> Timbre of the sound (Sine, Square, Triangle, Sawtooth).</li>
                 <li><strong>Musical Quantization:</strong> Snaps frequencies to the nearest musical note.</li>
-                <li><strong>Stereo Envelope:</strong> Adds stereo width and amplitude shaping.</li>
             </ul>
 
             <p>
