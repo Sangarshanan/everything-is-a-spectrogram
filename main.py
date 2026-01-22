@@ -31,7 +31,6 @@ async def process(data: ProcessRequest):
     image_data = data.image
     
     # Decode base64 image
-    # Format: "data:image/png;base64,iVBORw0KGgo..."
     try:
         header, encoded = image_data.split(",", 1)
         image_bytes = base64.b64decode(encoded)
